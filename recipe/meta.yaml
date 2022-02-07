@@ -12,14 +12,15 @@ source:
 build:
   number: 1
   skip: true  # [py2k]
-  script: {{ PYTHON }} -m pip install . -vv
+  script: {{ PYTHON }} -m pip install --prefix $PREFIX -vv --no-deps .
 
 requirements:
   build:
     - {{ compiler('c') }}
+    - {{ compiler('fortran_compiler') }} # [win]
   host:
     - cython >=0.29,!=0.29.18
-    - numpy >=1.19.3
+    - numpy #>=1.19.3
     - pip
     - python
   run:
