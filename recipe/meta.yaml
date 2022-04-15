@@ -11,18 +11,20 @@ source:
 
 build:
   number: 0
-  skip: true  # [py<37]
+  # Unsatisfiable dependencies on win32 with python 3.10
+  skip: true  # [py<37 or (win32 and py==310)]
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   build:
     - {{ compiler('c') }}
-    - {{ compiler('fortran_compiler') }} # [win]
   host:
     - cython >=0.29,!=0.29.18
-    - numpy >=1.19.3   # [not win]
-    # numpy versions have issues on windows
-    - numpy            # [win]
+    # 2022/4/15: pmdarima 1.8.5 has a min required numpy >=1.19.3 https://github.com/alkaline-ml/pmdarima/blob/cafd5c79f1e5696c609716eca1514f0aaaf2d317/requirements.txt#L3
+    # but Anaconda has 1.19.2 on unix platforms so we use 1.20 branch 
+    - numpy   1.20  # [not (osx and arm64) and py<310]
+    - numpy   1.21  # [(osx and arm64) and py<310]
+    - numpy   1.21  # [py==310]
     - pip
     - python
     - setuptools
