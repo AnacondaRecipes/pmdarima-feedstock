@@ -18,7 +18,7 @@ requirements:
   build:
     - {{ compiler('c') }}
   host:
-    - cython >=0.29,!=0.29.18
+    - cython >=0.29,!=0.29.18,!=0.29.31
     # 2022/4/15: pmdarima 1.8.5 has a min required numpy >=1.19.3 https://github.com/alkaline-ml/pmdarima/blob/cafd5c79f1e5696c609716eca1514f0aaaf2d317/requirements.txt#L3
     # but Anaconda has 1.19.2 on unix platforms so we use 1.20 branch 
     - numpy   1.20  # [not (osx and arm64) and py<310]
