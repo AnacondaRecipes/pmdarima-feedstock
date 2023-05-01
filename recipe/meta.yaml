@@ -11,8 +11,7 @@ source:
 
 build:
   number: 0
-  # Unsatisfiable dependencies on win32 with python 3.10
-  skip: true  # [py<37 or (win32 and py>=310 and py<310)]
+  skip: true  # [py<37]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
