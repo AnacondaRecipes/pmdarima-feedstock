@@ -19,24 +19,12 @@ requirements:
     - {{ compiler('c') }}
   host:
     - cython >=0.29,!=0.29.18,!=0.29.31
-    - numpy 1.21.2  # [py<310]
-    - numpy 1.21.6  # [py310 and unix]
-    - numpy 1.22.3  # [py310 and win]
-    - numpy 1.23.2  # [py311]
-    - numpy 1.26.0  # [py312]
-    - scipy 1.3.2  # [py<=38]
-    - scipy 1.5.3  # [py<=38 and aarch64]
-    - scipy 1.5.4  # [py39]
-    - scipy 1.7.2  # [py310]
-    - scipy 1.9.3  # [py311]
-    - scipy 1.11.2  # [py312]
-    - statsmodels 0.13.2  # [py<=310]
-    - statsmodels 0.13.3  # [py311]
-    - statsmodels 0.14.0  # [py312]
+    - numpy {{ numpy }}
     - pip
     - python
     - setuptools
     - wheel
+    - packaging
   run:
     - python
     - joblib >=0.11
@@ -49,7 +37,7 @@ requirements:
     - urllib3
     - setuptools >=38.6.0,!=50.0.0
     # Bundled with setuptools, but want to be explicit
-    # - packaging >=17.1
+    - packaging >=17.1
 
 test:
   source_files:
