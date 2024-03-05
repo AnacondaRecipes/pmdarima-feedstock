@@ -67,3 +67,6 @@ extra:
     - tomasvanpottelbergh
     - cdesouza21
     - bkreider
+  skip-lints:
+    - python_build_tool_in_run
+    - cython_must_be_in_host
