@@ -16,41 +16,38 @@ build:
 
 requirements:
   build:
+    - {{ stdlib('c') }}
     - {{ compiler('c') }}
   host:
-    - cython >=0.29,!=0.29.18,!=0.29.31
-    - numpy {{ numpy }}
-    - pip
     - python
-    - packaging
+    - pip
     - meson-python >=0.15.0
-    - numpy >=2.0.0
+    - numpy {{ numpy }}
+    - cython >=0.29,!=0.29.18,!=0.29.31
+    - packaging
   run:
     - python
     - joblib >=0.11
     - cython >=0.29,!=0.29.18,!=0.29.31
-    - {{ pin_compatible('numpy') }}
+    - numpy >=1.21.6
     - pandas >=0.19
     - scikit-learn >=0.22
     - scipy >=1.13.0
     - statsmodels >=0.14.5
     - urllib3
     - setuptools >=42,!=50.0.0
-    # Bundled with setuptools, but want to be explicit
     - packaging >=17.1
 
 test:
-  source_files:
-    - pmdarima/tests
   imports:
     - pmdarima
   commands:
     - pip check
-    - python -m pytest -v
+    - pytest --pyargs pmdarima.tests
   requires:
     - pip
     - pytest
-    - matplotlib
+    - matplotlib >=2.2.0
 
 about:
   home: https://github.com/alkaline-ml/pmdarima
@@ -60,7 +57,7 @@ about:
   license_file: LICENSE
   summary: Pmdarima (originally pyramid-arima, for the anagram of 'py' + 'arima') is a statistical library designed to fill the void in Python's time series analysis capabilities.
   dev_url: https://github.com/alkaline-ml/pmdarima
-  doc_url: https://alkaline-ml.com/pmdarima/
+  doc_url: https://alkaline-ml.com/pmdarima
 
 extra:
   recipe-maintainers:
